@@ -22,6 +22,7 @@ class btCollisionWorld;
 namespace GopherEngine
 {
     class ColliderComponent;
+    class RigidBodyComponent;
     class Node;
 
     // A simple engine-facing identifier so game code does not need to know
@@ -69,6 +70,14 @@ namespace GopherEngine
             // Removes a collider from the Bullet world and the engine registry.
             void unregister_collider(ColliderId collider_id);
 
+            // Registers a dynamic rigid body on a node, creating a pending entry
+            // if its collider has not been registered yet.
+            ColliderId register_rigid_body(RigidBodyComponent* component, Node& node);
+
+            // Removes rigid-body simulation from an already-registered collider.
+            void unregister_rigid_body(ColliderId collider_id);
+
+
         private:
             // Stores the Bullet objects and engine back-pointers associated with
             // one engine collider.
@@ -85,6 +94,9 @@ namespace GopherEngine
 
                 // Points back at the engine component so collision flags can be updated.
                 ColliderComponent* component_{nullptr};
+
+                // Points back at the rigid body component if one is registered.
+                RigidBodyComponent* rigid_body_component_{nullptr};
             };
 
             // Shared helper used by the public collider-registration methods.

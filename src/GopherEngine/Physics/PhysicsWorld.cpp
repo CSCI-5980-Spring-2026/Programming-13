@@ -2,6 +2,7 @@
 
 #include <GopherEngine/Core/Node.hpp>
 #include <GopherEngine/Physics/ColliderComponent.hpp>
+#include <GopherEngine/Physics/RigidBodyComponent.hpp>
 
 #include <glm/gtc/quaternion.hpp>
 
@@ -257,4 +258,15 @@ namespace GopherEngine
 
         return collider_id;
     }
+
+     ColliderId PhysicsWorld::register_rigid_body(RigidBodyComponent* component, Node& node)
+     {
+        const ColliderId collider_id = 0;
+        return collider_id;
+     }
+
+     void PhysicsWorld::unregister_rigid_body(ColliderId collider_id)
+     {
+
+     }
 }
