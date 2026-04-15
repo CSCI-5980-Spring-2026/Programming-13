@@ -68,8 +68,8 @@ namespace GopherEngine {
             // Recompute scene transforms so physics sees current world matrices.
             scene_->sync_transforms();
 
-            // Run collision detection for the current frame.
-            physics_world_.update();
+            // Run collision detection and physics simulation for the current frame.
+            physics_world_.update(delta_time);
 
             // Let the application react to the post-physics state of the frame.
             update(delta_time);
